@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/router'; // Assurez-vous d'utiliser next/router si vous utilisez Next.js
 import Header from '../components/layout/Header';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 // Interface pour les données du formulaire
 interface IFormInput {
@@ -57,10 +59,10 @@ export default function Home() {
       }
 
       const result = await response.json();
-      console.log(result);
+      const sucessMess = "L&apos;utilisateur a bien été enrégistré"
 
       if (result && result.id) {
-        setSuccessMessage('L\'utilisateur a bien été enrégistré');
+        setSuccessMessage(sucessMess);
         setErrorMessage('');
         setTimeout(() => {
           router.push('/login'); // Redirige vers la page de login après 3 secondes
@@ -69,7 +71,7 @@ export default function Home() {
         throw new Error('Unexpected response structure');
       }
     } catch (error) {
-      setErrorMessage('Une erreur s\'est produite');
+      setErrorMessage("Une erreur s&apos;est produite");
       setSuccessMessage('');
       console.error('Error:', error);
     }
@@ -99,7 +101,7 @@ export default function Home() {
             <input
               type="text"
               id="username"
-              {...register('username', { required: 'Nom d\'utilisateur requis' })}
+              {...register('username', { required: 'Nom d&apos;utilisateur requis' })}
               className={`bg-gray-50 border ${
                 errors.username ? 'border-red-500' : 'border-gray-300'
               } text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
@@ -200,63 +202,78 @@ export default function Home() {
                 className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                 id="file_input"
                 type="file"
+                accept="image/*"
                 {...register('file_input')}
               />
             </div>
 
-            <div>
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Adresse email
-              </label>
-              <input
-                type="email"
-                id="email"
-                {...register('email', { required: 'Adresse email requise' })}
-                className={`bg-gray-50 border ${
-                  errors.email ? 'border-red-500' : 'border-gray-300'
-                } text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                placeholder="john.doe@company.com"
-              />
-              {errors.email && (
-                <p className="text-red-500 text-sm">{errors.email.message}</p>
-              )}
-            </div>
+            <div className="mb-6">
+            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              {...register('email', {
+                required: 'Email requis',
+                pattern: {
+                  value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i,
+                  message: 'Format email invalide',
+                },
+              })}
+              className={`bg-gray-50 border ${
+                errors.email ? 'border-red-500' : 'border-gray-300'
+              } text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+              placeholder="john.doe@example.com"
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+          </div>
           </div>
 
+          
+
           <div className="grid gap-6 mb-6 md:grid-cols-2">
-            <div className="relative">
+            <div>
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 Mot de passe
               </label>
               <div className="relative">
                 <input
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? 'text' : 'password'}
                   id="password"
-                  {...register('password', { required: 'Mot de passe requis' })}
+                  {...register('password', {
+                    required: 'Mot de passe requis',
+                    minLength: {
+                      value: 8,
+                      message: 'Le mot de passe doit contenir au moins 8 caractères',
+                    },
+                  })}
                   className={`bg-gray-50 border ${
                     errors.password ? 'border-red-500' : 'border-gray-300'
-                  } text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pr-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                  placeholder="•••••••••"
+                  } text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                 />
-                <span
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-white"
+                <button
+                  type="button"
+                  className="absolute right-2 top-2 text-gray-600 dark:text-gray-400"
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? <i className="fas fa-eye-slash"></i> : <i className="fas fa-eye"></i>}
-                </span>
+                  {showPassword ? <VisibilityIcon/> : <VisibilityOffIcon/>}
+                </button>
               </div>
               {errors.password && (
                 <p className="text-red-500 text-sm">{errors.password.message}</p>
               )}
             </div>
 
-            <div className="relative">
+            <div>
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Confirmation du mot de passe
+                Confirmer le mot de passe
               </label>
               <div className="relative">
                 <input
-                  type={showConfirmPassword ? "text" : "password"}
+                  type={showConfirmPassword ? 'text' : 'password'}
                   id="confirm_password"
                   {...register('confirm_password', {
                     required: 'Confirmation du mot de passe requise',
@@ -265,15 +282,15 @@ export default function Home() {
                   })}
                   className={`bg-gray-50 border ${
                     errors.confirm_password ? 'border-red-500' : 'border-gray-300'
-                  } text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pr-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                  placeholder="•••••••••"
+                  } text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                 />
-                <span
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-white"
+                <button
+                  type="button"
+                  className="absolute right-2 top-2 text-gray-600 dark:text-gray-400"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 >
-                  {showConfirmPassword ? <i className="fas fa-eye-slash"></i> : <i className="fas fa-eye"></i>}
-                </span>
+                  {showConfirmPassword ? <VisibilityIcon/> : <VisibilityOffIcon/>}
+                </button>
               </div>
               {errors.confirm_password && (
                 <p className="text-red-500 text-sm">{errors.confirm_password.message}</p>
@@ -283,9 +300,9 @@ export default function Home() {
 
           <button
             type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800"
           >
-            Envoyer
+            Enregistrer
           </button>
         </form>
       </div>

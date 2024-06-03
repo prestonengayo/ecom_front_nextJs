@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AddShoppingCartTwoToneIcon from '@mui/icons-material/AddShoppingCartTwoTone';
 import { useCart } from '../../context/CartContext';
+import Image from 'next/image';
 
 interface ProductCardProps {
   id: number;
@@ -30,7 +31,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ id, title, description, price
   return (
     <>
       <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <img className="p-8 w-full h-48 rounded-t-lg" src={image_url} alt="product image" />
+        <Image className="p-8 w-full h-48 rounded-t-lg" src={image_url} alt="product image" width={200} height={200}/>
         <div className="px-5 pb-5">
           <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{title}</h5>
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
@@ -80,7 +81,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ id, title, description, price
               </button>
             </div>
             <div className="overflow-y-auto max-h-96">
-              <img className="p-8 rounded-t-lg" src={image_url} alt="product image" />
+              <Image className="p-8 rounded-t-lg" width={200} height={200} src={image_url} alt="product image" />
               <p className="mt-4">{description}</p>
               <p className="mt-4 font-bold">{`$${price}`}</p>
             </div>

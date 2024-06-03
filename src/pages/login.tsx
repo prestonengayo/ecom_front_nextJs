@@ -3,6 +3,9 @@ import { useRouter } from 'next/router';
 import Header from '../components/layout/Header';
 import Link from 'next/link';
 import { useAuth } from '../context/AuthContext';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 
 interface LoginResponse {
   refresh: string;
@@ -16,6 +19,7 @@ export default function Login() {
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
+  const [showPassword, setShowPassword] = useState<boolean>(false); // État pour gérer la visibilité du mot de passe
   const { login } = useAuth();
   const router = useRouter();
 
@@ -91,15 +95,24 @@ export default function Login() {
           </div>
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mot de passe</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                required
+              />
+              <button
+                type="button"
+                className="absolute text-white inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ?<VisibilityIcon/> : <VisibilityOffIcon/>}
+              </button>
+            </div>
           </div>
           <button
             type="submit"

@@ -5,6 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '../components/ui/CheckoutForm';
 import CloseIcon from '@mui/icons-material/Close';
+import Image from 'next/image';
 
 // Configurer Stripe
 const stripePromise = loadStripe('pk_test_51PMT1o07J6CUXffxdzJVOpWZiQMfEXj7gXOCdZ4wYestgpN5r08tKJpeISw02B25hGqtZW1aggjC8Ewls1sfhic500Kb5yBBqe');
@@ -41,7 +42,7 @@ const Cart: React.FC = () => {
           <ul className="mt-4">
             {cart.map(item => (
               <li key={item.id} className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-gray-700">
-                <img src={item.image_url} alt={item.title} className="w-16 h-16 rounded" />
+                <Image src={item.image_url} alt={item.title} className="w-16 h-16 rounded" height={200} width={200} />
                 <div className="flex-1 ml-4">
                   <h4 className="text-lg font-medium text-gray-900 dark:text-white">{item.title}</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
