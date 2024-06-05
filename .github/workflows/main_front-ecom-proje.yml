@@ -1,4 +1,4 @@
-name: Build and deploy Node.js app to Azure Web App - front-ecom-proje
+name: Build and deploy Node.js app to Azure Web App - front-ecom-projet
 
 on:
   push:
@@ -65,7 +65,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'front-ecom-proje'
+          app-name: 'front-ecom-projet'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EC3891AB8589478E9901061FF988E453 }}
           package: .
