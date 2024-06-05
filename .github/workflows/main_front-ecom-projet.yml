@@ -23,11 +23,11 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
+
       - name: Archive production artifacts
         run: |
           mkdir -p release
-          cp -r .next release/
-          cp -r public release/
+          cp -r dist release/ # Assuming your build output is in the 'dist' folder
           cp package.json release/
           cp package-lock.json release/
           cd release
@@ -60,22 +60,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'front-ecom-projet'  # Assurez-vous que le nom est correct
+          app-name: 'front-ecom-projet'  # Mettez à jour avec le bon nom de l'App Service
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A31F29A824B443E8AE4DFA49CA00FB90 }}
           package: .
-
-      - name: Fetch Azure logs if deployment fails
-        if: failure()
-        run: |
-          echo "Fetching logs from Azure App Service"
-          az webapp log download --resource-group DefaultResourceGroup-PAR --name front-ecom-projet --log-file logs.zip
-        env:
-          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Upload Azure logs if deployment fails
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: azure-logs
-          path: logs.zip
