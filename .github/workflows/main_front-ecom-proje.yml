@@ -32,6 +32,7 @@ jobs:
           Copy-Item next.config.mjs release\
           Copy-Item package.json release\
           Copy-Item package-lock.json release\
+          Copy-Item web.config release\
           Compress-Archive -Path release\* -DestinationPath release.zip
         shell: powershell
 
@@ -56,6 +57,9 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: Expand-Archive -Path release.zip -DestinationPath .
+
+      - name: List deployed files
+        run: Get-ChildItem -Recurse
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
