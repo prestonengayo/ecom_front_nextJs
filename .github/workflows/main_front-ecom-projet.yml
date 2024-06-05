@@ -1,4 +1,5 @@
 name: Build and deploy Node.js app to Azure Web App - front-ecom-projet
+
 on:
   push:
     branches:
@@ -26,7 +27,10 @@ jobs:
       - name: Archive production artifacts
         run: |
           mkdir -p release
-          cp -r . release/
+          cp -r .next release/
+          cp -r public release/
+          cp package.json release/
+          cp package-lock.json release/
           cd release
           zip -r ../release.zip .
         shell: bash
@@ -57,7 +61,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'front-ecom-projet'  # Mettez à jour avec le bon nom de l'App Service
+          app-name: 'front-ecom-projet'  # Assurez-vous que le nom est correct
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A31F29A824B443E8AE4DFA49CA00FB90 }}
           package: .
