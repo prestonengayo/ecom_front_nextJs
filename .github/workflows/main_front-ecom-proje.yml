@@ -26,20 +26,20 @@ jobs:
 
       - name: Archive production artifacts
         run: |
-          mkdir release
+          New-Item -ItemType Directory -Force -Path release
           xcopy .next release\.next /E /H /C /I
           xcopy public release\public /E /H /C /I
-          copy next.config.mjs release\
-          copy package.json release\
-          copy package-lock.json release\
-          tar -czf release.tar.gz -C release .
-        shell: bash
+          Copy-Item next.config.mjs release\
+          Copy-Item package.json release\
+          Copy-Item package-lock.json release\
+          Compress-Archive -Path release\* -DestinationPath release.zip
+        shell: powershell
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: release.tar.gz
+          path: release.zip
 
   deploy:
     runs-on: windows-latest
@@ -55,7 +55,7 @@ jobs:
           name: node-app
 
       - name: Unzip artifact for deployment
-        run: tar -xzf release.tar.gz
+        run: Expand-Archive -Path release.zip -DestinationPath .
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
