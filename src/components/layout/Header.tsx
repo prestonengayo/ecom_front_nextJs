@@ -51,12 +51,12 @@ const Header = () => {
                 <>
                   <li>
                     <Link href="/profile" className={`${pathname === '/profile' ? 'text-white' : 'text-gray-400'} block py-2 px-3 md:p-0 rounded md:hover:text-white dark:hover:text-white`}>
-                      Profil
+                      PROFIL
                     </Link>
                   </li>
                   <li>
                     <button onClick={logout} className="block py-2 px-3 md:p-0 rounded text-gray-400 md:hover:text-white dark:hover:text-white">
-                      Déconnexion
+                      DECONNEXION
                     </button>
                   </li>
                 </>
@@ -64,12 +64,12 @@ const Header = () => {
                 <>
                   <li>
                     <Link href="/login" className={`${pathname === '/login' ? 'text-white' : 'text-gray-400'} block py-2 px-3 md:p-0 rounded md:hover:text-white dark:hover:text-white`}>
-                      Connexion
+                      CONNEXION
                     </Link>
                   </li>
                   <li>
                     <Link href="/register" className={`${pathname === '/register' ? 'text-white' : 'text-gray-400'} block py-2 px-3 md:p-0 rounded md:hover:text-white dark:hover:text-white`}>
-                      Inscription
+                      INSCRIPTION
                     </Link>
                   </li>
                 </>
