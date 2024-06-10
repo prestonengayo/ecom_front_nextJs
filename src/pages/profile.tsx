@@ -56,7 +56,7 @@ const Profile: React.FC = () => {
           return;
         }
 
-        let profileResponse = await fetch(`http://localhost:8000/users/${userId}/`, {
+        let profileResponse = await fetch(`http://52.178.106.108:8000/users/${userId}/`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -65,7 +65,7 @@ const Profile: React.FC = () => {
         if (profileResponse.status === 401) {
           const refreshed = await refreshToken();
           if (refreshed) {
-            profileResponse = await fetch(`http://localhost:8000/users/${userId}/`, {
+            profileResponse = await fetch(`http://52.178.106.108:8000/users/${userId}/`, {
               headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access')}`
               }
@@ -80,7 +80,7 @@ const Profile: React.FC = () => {
         const profileData = await profileResponse.json();
         setUser(profileData);
 
-        let ordersResponse = await fetch('http://localhost:8000/list-orders/', {
+        let ordersResponse = await fetch('http://52.178.106.108:8000/list-orders/', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('access')}`
           }
@@ -89,7 +89,7 @@ const Profile: React.FC = () => {
         if (ordersResponse.status === 401) {
           const refreshed = await refreshToken();
           if (refreshed) {
-            ordersResponse = await fetch('http://localhost:8000/list-orders/', {
+            ordersResponse = await fetch('http://52.178.106.108:8000/list-orders/', {
               headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access')}`
               }
@@ -142,7 +142,7 @@ const Profile: React.FC = () => {
         formData.append('profile_image', profileImage);
       }
   
-      let response = await fetch(`http://localhost:8000/users/${userId}/`, {
+      let response = await fetch(`http://52.178.106.108:8000/users/${userId}/`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -153,7 +153,7 @@ const Profile: React.FC = () => {
       if (response.status === 401) {
         const refreshed = await refreshToken();
         if (refreshed) {
-          response = await fetch(`http://localhost:8000/users/${userId}/`, {
+          response = await fetch(`http://52.178.106.108:8000/users/${userId}/`, {
             method: 'PATCH',
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('access')}`
@@ -182,7 +182,7 @@ const Profile: React.FC = () => {
   const handleOrderDelete = async (orderId: number) => {
     try {
       const token = localStorage.getItem('access');
-      let response = await fetch(`http://localhost:8000/create-order/${orderId}/`, {
+      let response = await fetch(`http://52.178.106.108:8000/create-order/${orderId}/`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -192,7 +192,7 @@ const Profile: React.FC = () => {
       if (response.status === 401) {
         const refreshed = await refreshToken();
         if (refreshed) {
-          response = await fetch(`http://localhost:8000/create-order/${orderId}/`, {
+          response = await fetch(`http://52.178.106.108:8000/create-order/${orderId}/`, {
             method: 'DELETE',
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('access')}`

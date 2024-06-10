@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000';
+const API_URL = 'http://52.178.106.108:8000';
 
 export const getAccessToken = (): string | null => {
   return localStorage.getItem('access');

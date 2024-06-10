@@ -1,5 +1,5 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
+# Documentation pour l'action de déploiement des applications Web Azure : https://github.com/Azure/webapps-deploy
+# Plus d'actions GitHub pour Azure : https://github.com/Azure/actions
 
 name: Build and deploy Node.js app to Azure Web App - ecom-front-app
 
@@ -43,7 +43,7 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write # Ceci est nécessaire pour demander le JWT
 
     steps:
       - name: Download artifact from build job
@@ -68,4 +68,3 @@ jobs:
           app-name: 'ecom-front-app'
           slot-name: 'Production'
           package: .
-          

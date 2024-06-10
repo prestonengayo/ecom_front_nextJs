@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       return false;
     }
 
-    const response = await fetch('http://localhost:8000/api/token/refresh/', {
+    const response = await fetch('http://52.178.106.108:8000/api/token/refresh/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
