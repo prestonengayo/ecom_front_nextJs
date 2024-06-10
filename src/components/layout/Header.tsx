@@ -64,7 +64,7 @@ const Header = () => {
                 <>
                   <li>
                     <Link href="/login" className={`${pathname === '/login' ? 'text-white' : 'text-gray-400'} block py-2 px-3 md:p-0 rounded md:hover:text-white dark:hover:text-white`}>
-                      CONNEXION
+                      CONNEXION 
                     </Link>
                   </li>
                   <li>
