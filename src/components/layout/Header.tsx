@@ -44,7 +44,7 @@ const Header = () => {
             <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
               <li>
                 <Link href="/" className={`${pathname === '/' ? 'text-white' : 'text-gray-400'} block py-2 px-3 md:p-0 rounded md:hover:text-white dark:hover:text-white`}>
-                  Accueil
+                  ACCEUIL
                 </Link>
               </li>
               {isAuthenticated ? (
