@@ -26,7 +26,7 @@ const Header = () => {
             <span className='text-white'>
               <DirectionsCarFilledIcon fontSize="large" />
             </span>
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">OCar</span>
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">OCars</span>
           </Link>
           <button 
             onClick={toggleMenu}
