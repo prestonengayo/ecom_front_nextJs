@@ -4,7 +4,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'POST') {
     const { payment_method, cart, userId } = req.body;
 
-    const response = await fetch('http://localhost:8000/create-order/', {
+    const response = await fetch('https://ecom-back.shop/create-order/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

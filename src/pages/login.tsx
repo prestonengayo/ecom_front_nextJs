@@ -32,7 +32,7 @@ export default function Login() {
     };
 
     try {
-      const response = await fetch('http://52.178.106.108:8000/login/', {
+      const response = await fetch('https://ecom-back.shop/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

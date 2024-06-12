@@ -82,7 +82,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onClose, clearCart }) => {
     }));
 
     const createOrder = async (accessToken: string) => {
-      const response = await fetch('http://52.178.106.108:8000/create-order/', {
+      const response = await fetch('https://ecom-back.shop/create-order/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

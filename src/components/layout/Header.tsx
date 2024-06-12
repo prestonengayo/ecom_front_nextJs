@@ -43,19 +43,19 @@ const Header = () => {
           <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full md:block md:w-auto`} id="navbar-solid-bg">
             <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
               <li>
-                <Link href="/" className={`${pathname === '/' ? 'text-white' : 'text-gray-400'} block py-2 px-3 md:p-0 rounded md:hover:text-white dark:hover:text-white`}>
+                <Link href="/" className={`${pathname === '/' ? 'text-white' : 'text-gray-400'} font-semibold block py-2 px-3 md:p-0 lowercase rounded md:hover:text-white dark:hover:text-white`}>
                   ACCEUIL
                 </Link>
               </li>
               {isAuthenticated ? (
                 <>
                   <li>
-                    <Link href="/profile" className={`${pathname === '/profile' ? 'text-white' : 'text-gray-400'} block py-2 px-3 md:p-0 rounded md:hover:text-white dark:hover:text-white`}>
+                    <Link href="/profile" className={`${pathname === '/profile' ? 'text-white' : 'text-gray-400'} font-semibold block lowercase py-2 px-3 md:p-0 rounded md:hover:text-white dark:hover:text-white`}>
                       PROFIL
                     </Link>
                   </li>
                   <li>
-                    <button onClick={logout} className="block py-2 px-3 md:p-0 rounded text-gray-400 md:hover:text-white dark:hover:text-white">
+                    <button onClick={logout} className="block py-2 px-3 md:p-0 font-semibold rounded lowercase text-gray-400 md:hover:text-white dark:hover:text-white">
                       DECONNEXION
                     </button>
                   </li>
@@ -63,19 +63,19 @@ const Header = () => {
               ) : (
                 <>
                   <li>
-                    <Link href="/login" className={`${pathname === '/login' ? 'text-white' : 'text-gray-400'} block py-2 px-3 md:p-0 rounded md:hover:text-white dark:hover:text-white`}>
+                    <Link href="/login" className={`${pathname === '/login' ? 'text-white' : 'text-gray-400'} font-semibold block lowercase py-2 px-3 md:p-0 rounded md:hover:text-white dark:hover:text-white`}>
                       CONNEXION 
                     </Link>
                   </li>
                   <li>
-                    <Link href="/register" className={`${pathname === '/register' ? 'text-white' : 'text-gray-400'} block py-2 px-3 md:p-0 rounded md:hover:text-white dark:hover:text-white`}>
+                    <Link href="/register" className={`${pathname === '/register' ? 'text-white' : 'text-gray-400'} font-semibold block lowercase py-2 px-3 md:p-0 rounded md:hover:text-white dark:hover:text-white`}>
                       INSCRIPTION
                     </Link>
                   </li>
                 </>
               )}
               <li className="relative">
-                <Link href="/cart" className={`${pathname === '/cart' ? 'text-white' : 'text-gray-400'} block py-2 px-3 md:p-0 rounded md:hover:text-white dark:hover:text-white`}>
+                <Link href="/cart" className={`${pathname === '/cart' ? 'text-white' : 'text-gray-400'} font-semibold block py-2 px-3 md:p-0 rounded md:hover:text-white dark:hover:text-white`}>
                   <ShoppingCartIcon />
                   {totalItems > 0 && (
                     <span className="absolute bottom-4 left-3 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">

@@ -1,4 +1,4 @@
-const API_URL = 'http://52.178.106.108:8000';
+const API_URL = 'https://ecom-back.shop';
 
 export const getAccessToken = (): string | null => {
   return localStorage.getItem('access');

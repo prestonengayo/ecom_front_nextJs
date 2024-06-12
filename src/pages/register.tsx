@@ -49,7 +49,7 @@ export default function Home() {
     }
 
     try {
-      const response = await fetch('http://52.178.106.108:8000/register/', {
+      const response = await fetch('https://ecom-back.shop/register/', {
         method: 'POST',
         body: formData,
       });
