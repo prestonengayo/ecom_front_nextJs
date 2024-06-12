@@ -80,7 +80,7 @@ export default function Home() {
   return (
     <main>
       <Header />
-      <div className="w-full mx-auto mt-8 max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <div className="w-11/12 sm:w-full lg:max-w-2xl lg:mx-auto mx-auto mt-8 max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mb-5">
         {successMessage && (
           <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
             <strong className="font-bold">Succès ! </strong>

@@ -68,7 +68,7 @@ export default function Login() {
   return (
     <main>
       <Header />
-      <div className="w-full mx-auto mt-8 max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <div className="w-11/12 mx-auto mt-8 max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:w-full sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
         <form className="space-y-6" onSubmit={handleLogin}>
           <h5 className="text-xl text-center font-medium text-gray-900 dark:text-white">Connexion</h5>
           {successMessage && (
@@ -110,7 +110,7 @@ export default function Login() {
                 className="absolute text-white inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ?<VisibilityIcon/> : <VisibilityOffIcon/>}
+                {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
               </button>
             </div>
           </div>
@@ -125,6 +125,7 @@ export default function Login() {
           </div>
         </form>
       </div>
+
     </main>
   );
 }

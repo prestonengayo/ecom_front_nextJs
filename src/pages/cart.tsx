@@ -32,17 +32,19 @@ const Cart: React.FC = () => {
   };
 
   return (
-    <main>
+<main>
       <Header />
-      <div className="container mx-auto mt-8 max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="container mx-auto mt-8 p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-11/12 sm:w-full lg:max-w-2xl lg:mx-auto">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Mon panier</h2>
         {cart.length === 0 ? (
           <p className="mt-4 text-gray-600 dark:text-gray-400">Votre panier est vide.</p>
         ) : (
-          <ul className="mt-4">
+          <ul className="mt-4 space-y-4">
             {cart.map(item => (
-              <li key={item.id} className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-gray-700">
-                <Image src={item.image_url} alt={item.title} className="w-19 h-19 rounded" height={200} width={200} />
+              <li key={item.id} className="flex flex-wrap items-center justify-between py-2 border-b border-gray-200 dark:border-gray-700">
+                <div className="w-full sm:w-auto">
+                  <Image src={item.image_url} alt={item.title} className="w-19 h-19 rounded" height={200} width={200} />
+                </div>
                 <div className="flex-1 ml-4">
                   <h4 className="text-lg font-medium text-gray-900 dark:text-white">{item.title}</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -73,7 +75,7 @@ const Cart: React.FC = () => {
                 </div>
                 <button
                   onClick={() => removeFromCart(item.id)}
-                  className="text-red-600 hover:text-red-800 ml-4"
+                  className="text-red-600 hover:text-red-800 ml-4 sm:ml-0"
                 >
                   Remove
                 </button>
@@ -98,19 +100,18 @@ const Cart: React.FC = () => {
 
       {isModalOpen && (
         <div className="fixed dark:text-white inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-        <div className="text-white pt-3 pb-8 pr-8 pl-8 w-full max-w-md bg-white border border-gray-200 rounded-lg shadow dark:text-white dark:bg-gray-800 dark:border-gray-700 mx-4 sm:mx-auto">
-          <button
-            onClick={handleModalClose}
-            className="mt-2 mb-4 mr-4 text-gray-400 hover:text-gray-600"
-          >
-            <CloseIcon />
-          </button>
-          <Elements stripe={stripePromise}>
-            <CheckoutForm onClose={handleModalClose} clearCart={clearCart} />
-          </Elements>
+          <div className="text-white pt-3 pb-8 pr-8 pl-8 w-full max-w-md bg-white border border-gray-200 rounded-lg shadow dark:text-white dark:bg-gray-800 dark:border-gray-700 mx-4 sm:mx-auto">
+            <button
+              onClick={handleModalClose}
+              className="mt-2 mb-4 mr-4 text-gray-400 hover:text-gray-600"
+            >
+              <CloseIcon />
+            </button>
+            <Elements stripe={stripePromise}>
+              <CheckoutForm onClose={handleModalClose} clearCart={clearCart} />
+            </Elements>
+          </div>
         </div>
-      </div>
-      
       )}
     </main>
   );

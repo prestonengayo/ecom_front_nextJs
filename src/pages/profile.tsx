@@ -233,7 +233,7 @@ const Profile: React.FC = () => {
       {alertMessage && (
       <Alert message={alertMessage} onClose={() => setAlertMessage(null)} />
     )}
-      <div className="w-full text-white mx-auto mt-8 max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <div className="w-11/12 sm:w-full lg:max-w-2xl text-white mx-auto mt-8 max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mb-4">
         <h2 className="text-2xl font-semibold mb-4">Ma page Profil</h2>
         {user && (
           <form onSubmit={handleProfileUpdate}>
