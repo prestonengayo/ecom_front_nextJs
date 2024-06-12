@@ -81,7 +81,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ id, title, description, price
               </button>
             </div>
             <div className="overflow-y-auto max-h-96">
-              <Image className="p-8 rounded-t-lg" width={200} height={200} src={image_url} alt="product image" />
+              <Image className="p-8 rounded-t-lg" w-full height={200} src={image_url} alt="product image" />
               <p className="mt-4">{description}</p>
               <p className="mt-4 font-bold">{`$${price}`}</p>
             </div>
