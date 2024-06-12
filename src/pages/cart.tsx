@@ -42,7 +42,7 @@ const Cart: React.FC = () => {
           <ul className="mt-4">
             {cart.map(item => (
               <li key={item.id} className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-gray-700">
-                <Image src={item.image_url} alt={item.title} className="w-16 h-16 rounded" height={200} width={200} />
+                <Image src={item.image_url} alt={item.title} className="w-19 h-19 rounded" height={200} width={200} />
                 <div className="flex-1 ml-4">
                   <h4 className="text-lg font-medium text-gray-900 dark:text-white">{item.title}</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
