@@ -34,7 +34,7 @@ const Cart: React.FC = () => {
   return (
 <main>
       <Header />
-      <div className="container mx-auto mt-8 p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-11/12 sm:w-full lg:max-w-2xl lg:mx-auto">
+      <div className="container mx-auto mt-8 p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-11/12 sm:w-full lg:max-w-2xl lg:mx-auto mb-5">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Mon panier</h2>
         {cart.length === 0 ? (
           <p className="mt-4 text-gray-600 dark:text-gray-400">Votre panier est vide.</p>

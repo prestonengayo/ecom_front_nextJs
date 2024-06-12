@@ -16,13 +16,28 @@ interface Product {
 
 const Home: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [loadingState, setLoadingState] = useState<{ [key: number]: boolean }>({});
 
   useEffect(() => {
     fetch('https://ecom-back.shop/products/')
       .then(response => response.json())
-      .then(data => setProducts(data))
+      .then(data => {
+        setProducts(data);
+        const initialLoadingState = data.reduce((acc: { [key: number]: boolean }, product: Product) => {
+          acc[product.id] = true;
+          return acc;
+        }, {});
+        setLoadingState(initialLoadingState);
+      })
       .catch(error => console.error('Error fetching products:', error));
   }, []);
+
+  const handleImageLoad = (id: number) => {
+    setLoadingState(prevState => ({
+      ...prevState,
+      [id]: false,
+    }));
+  };
 
   return (
     <main>
@@ -39,7 +54,6 @@ const Home: React.FC = () => {
           />
         ))}
       </div>
-
     </main>
   );
 }

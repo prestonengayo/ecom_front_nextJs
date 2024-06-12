@@ -308,10 +308,10 @@ const Profile: React.FC = () => {
           <ul>
             {orders.map(order => (
               <li key={order.id} className="mb-4 p-4 border border-gray-300 rounded-md">
-                <h3 className="text-lg font-semibold">Commande #{order.id}</h3>
-                <p>Créée le: {new Date(order.created_at).toLocaleDateString()}</p>
-                <p>Prix total: ${order.total_price}</p>
-                <ul className="mt-2">
+                <h3 className="text-md font-semibold">Commande #{order.id}</h3>
+                <p className="text-sm">Créée le: {new Date(order.created_at).toLocaleDateString()}</p>
+                <p className="text-sm">Prix total: ${order.total_price}</p>
+                <ul className="mt-2 text-sm">
                   {order.items.map(item => (
                     <li key={item.id} className="flex justify-between">
                       <span>{item.quantity} x {item.title}</span>
@@ -321,7 +321,7 @@ const Profile: React.FC = () => {
                 </ul>
                 <button
                   onClick={() => handleOrderDelete(order.id)}
-                  className="mt-2 text-red-600 hover:text-red-800"
+                  className="mt-2 text-sm text-red-600 hover:text-red-800"
                 >
                   Supprimer la commande
                 </button>
